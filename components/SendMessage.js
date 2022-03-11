@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
-export default function Message() {
+export default function SendMessage() {
     const [username, setusername] = useState(null);
     useEffect(() => {
         Promise.all([
@@ -48,7 +49,7 @@ export default function Message() {
                     </label>
                 </div>
                 <button type="submit" className='mt-2'>
-                    <img src="https://img.icons8.com/ios-glyphs/30/000000/filled-sent.png" />
+                    <Image src="/filled-sent.png" width={30} height={30} />
                 </button>
             </form>
         </div>

@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import Message from '../components/Message';
+import SendMessage from '../components/SendMessage';
 
 
 export default function Home() {
@@ -12,17 +11,16 @@ export default function Home() {
         <link rel="icon" href="/logonew.png" />
       </Head>
 
-      <div className='text-center mt-24'>
-        <Image
+        <img
+          className="h-auto mx-auto mt-24"
           src="/contkt-logo-extra-low-quality.png"
           alt='Contkt Logo'
           width={200}
           height={200}
         />
-      </div>
 
       <main>
-        <Message/>
+        <SendMessage/>
       </main>
     </div>
   )
