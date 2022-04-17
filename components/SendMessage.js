@@ -56,7 +56,7 @@ export default function SendMessage(props) {
                 </div>
                 <div>
                     <label htmlFor="message">
-                        <input type="text" name="message" className='inline outline-none border-[1px] w-96 h-10 rounded-md p-2 border-gray-400 focus:border-gray-600' value={msg} onChange={changeMsg}/>
+                        <input type="text" name="message" className='inline outline-none border-[1px] md:w-96 sm:w-[22rem] w-[21rem] h-10 rounded-md p-2 border-gray-400 focus:border-gray-600' value={msg} onChange={changeMsg} autoComplete="off"/>
                     </label>
                 </div>
                 <button type="submit" className='mt-2'>

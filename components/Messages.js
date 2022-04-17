@@ -4,7 +4,7 @@ export default function Messages(props) {
     const { messages , userName , isMobile} = props;
 
   return (
-    <div className={isMobile?`max-w-[380px] m-auto mt-10`:`max-w-[400px] m-auto mt-10`}>
+    <div className='sm:max-w-[350px] md:max-w-[450px] max-w-[300px] m-auto mt-10'>
         <div className='mt-[15px] mb-[10px] '>
         {
             isMobile ? (
