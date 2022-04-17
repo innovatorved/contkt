@@ -1,9 +1,54 @@
 import Head from 'next/head';
 import SendMessage from '../components/SendMessage';
 
+import {useState , useEffect } from "react";
+import io from "socket.io-client";
+let socket;
 
-export default function Home() {
+import { nanoid } from "nanoid";
+
+const userName = nanoid(4);
+
+let prevMsg = {};
+function Home() {
+
+  const [msg , setMsg] = useState('');
+  const [messages , setMessages] = useState([]);
+
+  const socketInitializer = async () => {
+    await fetch('/api/server');
+    socket = io()
+
+    socket.on('connect', () => {
+      console.log('connected')
+    })
+
+    socket.on('chat', msg => {
+      if( JSON.stringify(prevMsg) !== JSON.stringify(msg)){
+        // problem
+        setMessages([...messages , msg]);
+        // console.log(messages);
+      }
+      prevMsg = msg;
+      
+    })
+  }
+
+  useEffect(() => {
+    socketInitializer();
+  }, [1]);
+
+  const SendChat = (data) => {
+    socket.emit('chat', {
+      data , userName
+    })
+  }
+
+
+
+  
   return (
+    
     <div>
       <Head>
         <title>Contkt</title>
@@ -20,8 +65,10 @@ export default function Home() {
         />
 
       <main>
-        <SendMessage/>
+        <SendMessage SendChat={SendChat} msg={msg} setMsg={setMsg}/>
       </main>
     </div>
   )
 }
+
+export default Home;

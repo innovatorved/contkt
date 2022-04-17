@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export default function SendMessage() {
+export default function SendMessage(props) {
+    const {SendChat , msg , setMsg} = props;
     const [username, setusername] = useState(null);
     useEffect(() => {
         Promise.all([
@@ -18,17 +19,27 @@ export default function SendMessage() {
         })
     }, [username]);
 
+    const changeMsg = (e) => {
+        setMsg(e.target.value);
+    }
+
     const messageSubmitted = (e) => {
         e.preventDefault();
+        const value = e.target.elements.message.value;
+        if (value.replace(/\s/g,"") == "") {
+            alert("Please enter a message");
+            setMsg("");
+            return ;
+        }
         const data = {
             username,
-            message: e.target.elements.message.value,
+            message: value,
             timeString: new Date().toLocaleTimeString()
         }
-        e.target.elements.message.value = '';
-        console.log(data);
-
+        setMsg('');
+        SendChat(data);
     }
+
     return (
         <div className='grid place-items-center'>
             <form className='mt-10' onSubmit={messageSubmitted}>
@@ -45,7 +56,7 @@ export default function SendMessage() {
                 </div>
                 <div>
                     <label htmlFor="message">
-                        <input type="text" name="message" className='inline outline-none border-[1px] w-96 h-10 rounded-md p-2 border-gray-400 focus:border-gray-600' />
+                        <input type="text" name="message" className='inline outline-none border-[1px] w-96 h-10 rounded-md p-2 border-gray-400 focus:border-gray-600' value={msg} onChange={changeMsg}/>
                     </label>
                 </div>
                 <button type="submit" className='mt-2'>
