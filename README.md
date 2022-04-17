@@ -2,9 +2,10 @@
 # Contkt
 
 A Web based Communication Plateform
+Online realtime Chat App
 
 
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/x7t27wK/pic1.jpg)
+![App Screenshot](https://raw.githubusercontent.com/innovatorved/contkt/main/pics/pic.jpeg)
 
